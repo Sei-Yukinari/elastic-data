@@ -24,6 +24,7 @@ class Excel {
     let map = new Map();
     let text = '';
     for ( let row = rangeVal.s.r; row <= rangeVal.e.r; row++ ) {
+      //見出し行はとばす
       if ( row <= config.excel.HeadRowNumber ) {
         continue;
       }
@@ -58,7 +59,7 @@ class Excel {
         map.set( config.excel.Columns[column], cell.v );
       } else {
         map.set( config.excel.Columns[column], '' );
-        console.log( 'adr:' + JSON.stringify( adr ) );
+        console.log( '空白のセル:' + JSON.stringify( adr ) );
       }
     }
   }

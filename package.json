@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start": "node -r babel-register ./app.js",
-    "www": "node -r babel-register ./www.js"
+    "start": "node -r babel-register ./app.js"
   },
   "license": "MIT",
   "dependencies": {
