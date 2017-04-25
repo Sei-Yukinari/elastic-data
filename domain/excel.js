@@ -20,7 +20,6 @@ class Excel {
     console.log('range:' + range);
     const rangeVal = xlsx.utils.decode_range(range);
     const maxColumnNumber = this.getMaxColumnNumber();
-
     let map = new Map();
     let text = '';
     for (let row = rangeVal.s.r; row <= rangeVal.e.r; row++) {
@@ -48,18 +47,13 @@ class Excel {
   }
 
   getMaxColumnNumber() {
-    for (var i in config.excel.Columns) {
-    }
-    return i;
+    return Object.keys(config.excel.Columns).length - 1;
   }
 
   setMap(column, map, cell, adr) {
     if (column in config.excel.Columns) {
       if (cell && cell.v) {
-        map.set(config.excel.Columns[column], cell.v);
-        if (cell.v.indexOf("\r\n") > -1) {
-          console.log('改行あり:' + cell.v + ` ` + JSON.stringify(adr));
-        }
+        map.set(config.excel.Columns[column], cell.v.replace(/\r?\n/g, ""));
       } else {
         map.set(config.excel.Columns[column], '');
         console.log('空白のセル:' + JSON.stringify(adr));
